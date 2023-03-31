@@ -10,13 +10,11 @@ import { HEROES } from '../mock-heroes';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
-export class HeroesComponent implements OnInit{
-  heroes$: Observable<Hero[]> | undefined = undefined;
+export class HeroesComponent implements OnInit {
+  heroes$: Observable<Hero[]> |  undefined = undefined;
 
-  constructor(private heroService: HeroService, private messageService : MessageService) {
+  constructor(private heroService: HeroService, private messageService: MessageService) {
   }
-
-  selectedHero?: Hero;
 
   ngOnInit(): void {
     this.getHeroes();
@@ -24,11 +22,6 @@ export class HeroesComponent implements OnInit{
 
   getHeroes(): void {
     this.heroes$ = this.heroService.getHeroes();
-  }
-
-  onSelect(hero: Hero): void {
-    this.messageService.add(hero.name)
-    this.selectedHero = hero;
   }
 
 }

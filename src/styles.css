@@ -41,5 +41,6 @@ button:disabled {
 /* everywhere else */
 * {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: darkgrey;
+  background-color: #444;
+  color: #aaa;
 }
