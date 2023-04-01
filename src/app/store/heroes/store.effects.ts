@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { Hero } from 'src/app/hero';
 import { HeroService } from '../../hero.service';
 import * as StoreActions from './store.actions';
 
@@ -22,6 +23,37 @@ export class HeroesEffects {
       })
     )
   );
+
+  addHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StoreActions.addHero),
+      switchMap((action) => {
+        // return this.heroService.addHero({name:n, id:1} as Hero).pipe(
+        return this.heroService.addHero(action.hero).pipe(
+          map((hero) => StoreActions.addHeroSuccess({ hero })),
+          catchError((error) => 
+            of(StoreActions.addHeroFailure({ error: error.message }))
+          )
+        );
+      })
+    )
+  );
+
+  
+  deleteHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StoreActions.deleteHero),
+      switchMap((action) => {
+        return this.heroService.deleteHero(action.id).pipe(
+          map((id) => StoreActions.deleteHeroSuccess(id)),
+          catchError((error) => 
+            of(StoreActions.deleteHeroFailure({ error: error.message }))
+          )
+        );
+      })
+    )
+  );
+
 
 
   constructor(private actions$: Actions, private heroService: HeroService) { }

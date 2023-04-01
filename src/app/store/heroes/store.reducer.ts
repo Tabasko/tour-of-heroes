@@ -22,6 +22,44 @@ export const reducers = createReducer(
     loading: false,
     heroes: [],
     error: action.error
-  }))
+  })),
 
+  on(StoreActions.addHero, (state, action) => (
+    {
+      ...state, 
+      loading: true
+    }
+  )),
+  on(StoreActions.addHeroSuccess, (state, action) => (
+    {
+      ...state,
+      loading: false,
+      heroes: [...state.heroes, action.hero]
+    }
+  )),
+  on(StoreActions.addHeroFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    heroes: [],
+    error: action.error
+  })),
+  on(StoreActions.deleteHero, (state, action) => (
+    {
+      ...state, 
+      loading: true
+    }
+  )),
+  on(StoreActions.deleteHeroSuccess, (state, action) => (
+    {
+      ...state,
+      loading: false,
+      heroes: state.heroes.filter((h: Hero) => h.id !== action.id)
+    }
+  )),
+  on(StoreActions.deleteHeroFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    heroes: [],
+    error: action.error
+  })),
 );

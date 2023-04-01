@@ -21,20 +21,19 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHeroes();
-  }
-
-  getHeroes(): void {
     this.facade.getHeroes();
   }
 
   add(name: string): void {
-    this.facade.add(name);
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.facade.add({ name } as Hero);
   }
 
-
   delete(hero: Hero): void {
-    this.facade.delete(hero);
+    this.facade.delete(hero.id);
   }
 
   // add(name: string): void {

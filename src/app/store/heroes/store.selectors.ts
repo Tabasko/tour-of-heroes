@@ -6,8 +6,6 @@ export const selectFeature = createFeatureSelector<fromState.HeroesState>(
    fromReducer.storeFeatureKey
  );
 
-//export const selectFeature = (state: fromState.HeroesState) => state;
-
 export const loadingSelector = createSelector(
   selectFeature, 
   (state) => state.loading

@@ -19,19 +19,17 @@ export class HeroesFacade {
     this.error$ = this.store.select(heroesSelector.errorSelector);
   }
 
-  // AHA: Avoid hasty abstractions - Kent C. Dodds
-  // Don't abstract away your actions and use createSelector to compose state ...
-  //dispatch(action: Action){
-  //  this.store.dispatch(action);
-  //}
-
   getHeroes(): void {
     this.store.dispatch(fromActions.loadHeroes());
   }
 
-  add(name: string): void {}
+  add(hero: Hero): void {
+    this.store.dispatch(fromActions.addHero({hero}));
+  }
 
-  delete(hero: Hero): void {}
+  delete(id: number): void {
+    this.store.dispatch(fromActions.deleteHero({id}));
+  }
 
 
 }
