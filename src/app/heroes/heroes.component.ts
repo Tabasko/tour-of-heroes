@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hero } from '../hero';
 import { HeroesFacade } from '../store/heroes/store.facade';
+import * as fromActions from '../store/heroes/store.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -27,9 +28,14 @@ export class HeroesComponent implements OnInit {
     this.facade.getHeroes();
   }
 
-  add(name: string): void {}
+  add(name: string): void {
+    this.facade.add(name);
+  }
 
-  delete(hero: Hero): void {}
+
+  delete(hero: Hero): void {
+    this.facade.delete(hero);
+  }
 
   // add(name: string): void {
   //   name = name.trim();
