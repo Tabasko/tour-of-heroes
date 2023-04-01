@@ -19,6 +19,7 @@ import * as fromStore from './store/heroes/store.reducer';
 import { HeroesEffects } from './store/heroes/store.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment.prod';
+import { HeroesFacade } from './store/heroes/store.facade';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { environment } from 'src/environments/environment.prod';
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
   ],
-  providers: [HeroService, MessageService],
+  providers: [HeroService, MessageService, HeroesFacade],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
-import * as fromActions from '../store/heroes/store.actions';
-import * as fromSelectors from '../store/heroes/store.selectors';
-import { HeroesState } from '../store/heroes/store.state';
+import { HeroesFacade } from '../store/heroes/store.facade';
 
 @Component({
   selector: 'app-heroes',
@@ -14,15 +9,14 @@ import { HeroesState } from '../store/heroes/store.state';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes$ = this.store.pipe(select(fromSelectors.heroesSelector));
-  loading$ = this.store.pipe(select(fromSelectors.loadingSelector));
-  error$ = this.store.pipe(select(fromSelectors.errorSelector));
+  loading$: Observable<boolean>;
+  heroes$: Observable<Hero[]>;
+  error$: Observable<string | null>;
 
-  constructor( private heroService: HeroService, private messageService: MessageService, private store: Store<HeroesState>) {
-    // qa: why not here
-    //this.loading$ = this.store.pipe(select(fromSelectors.loadingSelector));
-    //this.heroes$ = this.store.pipe(select(fromSelectors.heroesSelector));
-    //this.error$ = this.store.pipe(select(fromSelectors.errorSelector));
+  constructor(private facade: HeroesFacade) {
+    this.heroes$ = this.facade.heroes$;
+    this.loading$ = this.facade.loading$;
+    this.error$ = this.facade.error$;
   }
 
   ngOnInit(): void {
@@ -30,8 +24,7 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.store.dispatch(fromActions.loadHeroes());
-    //this.heroService.getHeroes() .subscribe((heroes: Hero[]) => this.heroes = heroes);
+    this.facade.getHeroes();
   }
 
   add(name: string): void {}
