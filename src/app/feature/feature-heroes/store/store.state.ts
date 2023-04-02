@@ -1,5 +1,5 @@
 import { Observable, of } from "rxjs";
-import { Hero } from "src/app/feature/hero";
+import { Hero } from "src/app/feature/feature-heroes/model/hero";
 
 
 export interface HeroesState {

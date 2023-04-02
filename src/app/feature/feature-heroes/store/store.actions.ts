@@ -1,7 +1,5 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Hero } from '../../hero';
+import { Hero } from '../model/hero';
 
 export const loadHeroes = createAction('[Heroes] loadHeroes');
 export const loadHeroesSuccess = createAction('[Heroes] loadHeroesSuccess', props<{ heroes: Hero[] }>());
@@ -22,4 +20,3 @@ export const getHeroFailure = createAction('[Heroes] getHero Failure', props<{ e
 export const saveHero = createAction('[Heroes] saveHero', props<{ hero: Hero }>());
 export const saveHeroSuccess = createAction('[Heroes] saveHero Success', props<{ hero: Hero }>());
 export const saveHeroFailure = createAction('[Heroes] saveHero Failure', props<{ error: string }>());
-

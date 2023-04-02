@@ -6,12 +6,12 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from '../app-routing.module';
 import { DashboardComponent } from './feature-heroes/dashboard/dashboard.component';
 import { HeroSearchComponent } from './feature-heroes/dashboard/hero-search/hero-search.component';
-import { HeroDetailComponent } from './feature-heroes/hero-detail/hero-detail.component';
+import { HeroDetailComponent } from './feature-heroes/detail/hero-detail.component';
 import { HeroesComponent } from './feature-heroes/heroes/heroes.component';
-import { HeroService } from './hero.service';
-import { HeroesEffects } from './store/heroes/store.effects';
-import { HeroesFacade } from './store/heroes/store.facade';
-import * as fromStore from './store/heroes/store.reducer';
+import { HeroService } from './feature-heroes/service/hero.service';
+import { HeroesEffects } from './feature-heroes/store/store.effects';
+import { HeroesFacade } from './feature-heroes/store/store.facade';
+import * as fromReducerStore from './feature-heroes/store/store.reducer';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import * as fromStore from './store/heroes/store.reducer';
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    StoreModule.forFeature(fromStore.storeFeatureKey, fromStore.reducers),
+    StoreModule.forFeature(fromReducerStore.storeFeatureKey, fromReducerStore.reducers),
     EffectsModule.forFeature([HeroesEffects]),
   ],
   providers: [HeroService, HeroesFacade],

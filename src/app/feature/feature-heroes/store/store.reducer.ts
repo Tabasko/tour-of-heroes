@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Hero } from '../../hero';
+import { Hero } from '../model/hero';
 import * as StoreActions from './store.actions';
 import { initialState } from './store.state';
 
@@ -105,4 +105,5 @@ export const reducers = createReducer(
     heroes: [],
     error: action.error
   })),
+
 );

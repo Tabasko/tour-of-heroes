@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { Hero } from 'src/app/feature/hero';
-import { HeroService } from 'src/app/feature/hero.service';
+import { Hero } from 'src/app/feature/feature-heroes/model/hero';
+import { HeroService } from '../service/hero.service';
 import * as StoreActions from './store.actions';
 
 @Injectable()

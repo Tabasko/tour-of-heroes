@@ -2,8 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Hero } from '../../hero';
-import { HeroesFacade } from '../../store/heroes/store.facade';
+import { Hero } from '../model/hero';
+import { HeroesFacade } from '../store/store.facade';
 
 @Component({
   selector: 'app-hero-detail',

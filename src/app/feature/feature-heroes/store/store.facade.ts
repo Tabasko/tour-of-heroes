@@ -3,7 +3,7 @@ import * as fromActions from './store.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as heroesSelector from './store.selectors';
-import { Hero } from 'src/app/feature/hero';
+import { Hero } from 'src/app/feature/feature-heroes/model/hero';
 import { Injectable } from '@angular/core';
 
 @Injectable()
