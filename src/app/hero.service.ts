@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { HotObservable } from 'rxjs/internal/testing/HotObservable';
 
 @Injectable()
 export class HeroService {
@@ -86,6 +87,7 @@ export class HeroService {
       tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
+
   }
 
   /* GET heroes whose name contains search term */
