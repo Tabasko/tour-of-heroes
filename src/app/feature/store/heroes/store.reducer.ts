@@ -1,9 +1,7 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { createReducer, on } from '@ngrx/store';
 import { Hero } from '../../hero';
-import { initialState } from './store.state';
 import * as StoreActions from './store.actions';
-import { state } from '@angular/animations';
+import { initialState } from './store.state';
 
 export const storeFeatureKey = 'heroes-store';
 
@@ -26,7 +24,7 @@ export const reducers = createReducer(
 
   on(StoreActions.addHero, (state, action) => (
     {
-      ...state, 
+      ...state,
       loading: true
     }
   )),
@@ -45,7 +43,7 @@ export const reducers = createReducer(
   })),
   on(StoreActions.deleteHero, (state, action) => (
     {
-      ...state, 
+      ...state,
       loading: true
     }
   )),
@@ -57,6 +55,50 @@ export const reducers = createReducer(
     }
   )),
   on(StoreActions.deleteHeroFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    heroes: [],
+    error: action.error
+  })),
+  on(StoreActions.getHero, (state, action) => (
+    {
+      ...state,
+      loading: true
+    }
+  )),
+  on(StoreActions.getHeroSuccess, (state, action) => (
+    {
+      ...state,
+      loading: false,
+      hero: action.hero
+    }
+  )),
+  on(StoreActions.getHeroFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    heroes: [],
+
+    error: action.error
+  })),
+
+  on(StoreActions.saveHero, (state, action) => (
+    {
+      ...state,
+      loading: true
+    }
+  )),
+  on(StoreActions.saveHeroSuccess, (state, action) => {
+    const heroes = state.heroes.map(
+      hero => action.hero.id === hero.id ? action.hero : hero
+    );
+    return {
+      ...state,
+      loading: false,
+      heroes: heroes
+    };
+  }
+  ),
+  on(StoreActions.saveHeroFailure, (state, action) => ({
     ...state,
     loading: false,
     heroes: [],

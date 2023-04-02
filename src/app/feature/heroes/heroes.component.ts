@@ -1,8 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Hero } from '../hero';
 import { HeroesFacade } from '../store/heroes/store.facade';
-import * as fromActions from '../store/heroes/store.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -35,20 +34,5 @@ export class HeroesComponent implements OnInit {
   delete(hero: Hero): void {
     this.facade.delete(hero.id);
   }
-
-  // add(name: string): void {
-  //   name = name.trim();
-  //   if (!name) { return; }
-  //   this.heroService.addHero({ name } as Hero)
-  //     .subscribe((hero: any) => {
-  //       this.heroes.push(hero);
-  //     });
-  // }
-
-  // delete(hero: Hero): void {
-  //   this.heroes = this.heroes.filter((h: Hero) => h !== hero);
-  //   this.heroService.deleteHero(hero.id).subscribe();
-  // }
-
 
 }

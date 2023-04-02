@@ -20,3 +20,8 @@ export const errorSelector = createSelector(
   selectFeature,
   (state) => state.error
 );
+
+export const heroSelector = createSelector(
+  selectFeature, 
+  (state) => state.hero
+);

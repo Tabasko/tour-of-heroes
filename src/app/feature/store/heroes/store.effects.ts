@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { Hero } from 'src/app/hero';
-import { HeroService } from '../../hero.service';
+import { Hero } from 'src/app/feature/hero';
+import { HeroService } from 'src/app/feature/hero.service';
 import * as StoreActions from './store.actions';
 
 @Injectable()
@@ -45,7 +45,7 @@ export class HeroesEffects {
       switchMap((action) => {
         return this.heroService.deleteHero(action.id).pipe(
           // qa 1: why not hero as parameter to deleteHeroSuccess
-          map((hero) => StoreActions.deleteHeroSuccess({id: action.id})),
+          map((hero) => StoreActions.deleteHeroSuccess({ id: action.id })),
           catchError((error) =>
             of(StoreActions.deleteHeroFailure({ error: error.message }))
           )
@@ -54,7 +54,33 @@ export class HeroesEffects {
     )
   );
 
+  getHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StoreActions.getHero),
+      switchMap((action) => {
+        return this.heroService.getHero(action.id).pipe(
+          map((hero) => StoreActions.getHeroSuccess({ hero })),
+          catchError((error) =>
+            of(StoreActions.getHeroFailure({ error: error.message }))
+          )
+        );
+      })
+    )
+  );
 
+  saveHero$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(StoreActions.saveHero),
+    switchMap((action) => {
+      return this.heroService.updateHero(action.hero).pipe(
+        map((hero) => StoreActions.saveHeroSuccess({hero})),
+        catchError((error) =>
+          of(StoreActions.saveHeroFailure({ error: error.message }))
+        )
+      );
+    })
+  )
+);
 
   constructor(private actions$: Actions, private heroService: HeroService) { }
 }
