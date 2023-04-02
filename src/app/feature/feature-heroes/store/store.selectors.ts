@@ -25,3 +25,8 @@ export const heroSelector = createSelector(
   selectFeature, 
   (state) => state.hero
 );
+
+export const searchResultSelector = createSelector(
+  selectFeature, 
+  (state) => state.searchResult
+);

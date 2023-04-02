@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { Hero } from 'src/app/feature/feature-heroes/model/hero';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { HeroService } from '../service/hero.service';
 import * as StoreActions from './store.actions';
 
@@ -69,20 +68,32 @@ export class HeroesEffects {
   );
 
   saveHero$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(StoreActions.saveHero),
-    switchMap((action) => {
-      return this.heroService.updateHero(action.hero).pipe(
-        tap((hero)=> console.log("effect action" + action.hero)),
-        tap((hero)=> console.log("effect hero" + hero)),
-        map((hero) => StoreActions.saveHeroSuccess({hero})),
-        catchError((error) =>
-          of(StoreActions.saveHeroFailure({ error: error.message }))
-        )
-      );
-    })
-  )
-);
+    this.actions$.pipe(
+      ofType(StoreActions.saveHero),
+      switchMap((action) => {
+        return this.heroService.updateHero(action.hero).pipe(
+          map((hero) => StoreActions.saveHeroSuccess({ hero })),
+          catchError((error) =>
+            of(StoreActions.saveHeroFailure({ error: error.message }))
+          )
+        );
+      })
+    )
+  );
+
+  searchHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StoreActions.search),
+      switchMap((action) => {
+        return this.heroService.searchHeroes(action.term).pipe(
+          map((heroes) => StoreActions.searchSuccess({ heroes })),
+          catchError((error) =>
+            of(StoreActions.searchFailure({ error: error.message }))
+          )
+        );
+      })
+    )
+  );
 
   constructor(private actions$: Actions, private heroService: HeroService) { }
 }

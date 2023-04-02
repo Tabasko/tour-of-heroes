@@ -20,7 +20,7 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.facade.getHeroes();
+    this.facade.loadHeroes();
   }
 
   add(name: string): void {

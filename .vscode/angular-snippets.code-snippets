@@ -47,7 +47,7 @@
     "body": [
       "export const $1 = createAction('[$2] $1');",
       "export const $1Success = createAction('[$2] $1Success', props<{ $0 }>());",
-      "export const $1Failure = createAction('[$2] $1Failure', props<{  }>());",  
+      "export const $1Failure = createAction('[$2] $1Failure', props<{ error: string }>());",  
     ],
     "description": ""
 

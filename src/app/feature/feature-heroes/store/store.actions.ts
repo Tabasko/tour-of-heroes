@@ -20,3 +20,9 @@ export const getHeroFailure = createAction('[Heroes] getHero Failure', props<{ e
 export const saveHero = createAction('[Heroes] saveHero', props<{ hero: Hero }>());
 export const saveHeroSuccess = createAction('[Heroes] saveHero Success', props<{ hero: Hero }>());
 export const saveHeroFailure = createAction('[Heroes] saveHero Failure', props<{ error: string }>());
+
+export const search = createAction('[HEroes] search', props<{ term: string }>());
+export const searchSuccess = createAction('[HEroes] searchSuccess', props<{ heroes: Hero[] }>());
+export const searchFailure = createAction('[HEroes] searchFailure', props<{ error: string }>());
+
+export const resetSearch = createAction('[HEroes] resetSearch');

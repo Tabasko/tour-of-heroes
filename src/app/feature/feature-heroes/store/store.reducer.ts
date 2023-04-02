@@ -105,5 +105,33 @@ export const reducers = createReducer(
     heroes: [],
     error: action.error
   })),
+  on(StoreActions.search, (state, action) => (
+    {
+      ...state,
+      loading: true,
 
+    }
+  )),
+  on(StoreActions.searchSuccess, (state, action) => {
+    return {
+      ...state,
+      loading: false,
+      searchResult: action.heroes
+    };
+  }
+  ),
+  on(StoreActions.searchFailure, (state, action) => ({
+    ...state,
+    loading: false,
+    error: action.error
+
+  })),
+  on(StoreActions.resetSearch, (state, action) => (
+    {
+      ...state,
+      loading: true,
+      searchResult: undefined
+
+    }
+  )),
 );

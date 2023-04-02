@@ -7,6 +7,7 @@ export interface HeroesState {
   loading: boolean;
   error: string | null;
   hero?: Hero;
+  searchResult?: Hero[];
 }
 
 export const initialState: HeroesState = {

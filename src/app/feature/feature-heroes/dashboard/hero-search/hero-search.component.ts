@@ -1,37 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {
-  debounceTime, distinctUntilChanged, switchMap
+  debounceTime, distinctUntilChanged
 } from 'rxjs/operators';
 import { Hero } from '../../model/hero';
-import { HeroService } from '../../service/hero.service';
+import { HeroesFacade } from '../../store/store.facade';
 
 @Component({
   selector: 'app-hero-search',
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.css']
 })
-export class HeroSearchComponent implements OnInit {
-  heroes$!: Observable<Hero[]>;
+export class HeroSearchComponent implements OnInit, OnDestroy {
+  heroes$: Observable<Hero[] | undefined>;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: HeroService) { }
-
+  constructor(private heroesFacade: HeroesFacade) {
+    this.heroes$ = heroesFacade.searchResult$;
+  }
+ 
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
   }
 
   ngOnInit(): void {
-    this.heroes$ = this.searchTerms.pipe(
+    // qa: if not reset store here, then the last search is always shown
+    this.heroesFacade.resetSearchResult();
+    this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
       // ignore new term if same as previous term
       distinctUntilChanged(),
 
-      // switch to new search observable each time the term changes
-      switchMap((term: string) => this.heroService.searchHeroes(term)),
+      ).subscribe(
+        // qa: do i need to subscribe here?
+        (term) => this.heroesFacade.search(term)
     );
   }
+
+  ngOnDestroy(): void {
+    this.searchTerms.unsubscribe();
+  }
+
 }
