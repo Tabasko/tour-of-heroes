@@ -9,26 +9,16 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { environment } from 'src/environments/environment.prod';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './feature/dashboard/dashboard.component';
 import { InMemoryDataService } from './in-memory-data.service';
-import { MessageService } from './message.service';
-import { MessagesComponent } from './messages/messages.component';
-import * as fromStore from './feature/store/heroes/store.reducer';
-import { HeroesComponent } from './feature/heroes/heroes.component';
-import { HeroDetailComponent } from './feature/hero-detail/hero-detail.component';
-import { HeroSearchComponent } from './feature/dashboard/components/hero-search/hero-search.component';
-import { HeroesEffects } from './feature/store/heroes/store.effects';
-import { HeroesFacade } from './feature/store/heroes/store.facade';
-import { HeroService } from './feature/hero.service';
+
+import { FeatureModule } from './feature/feature-module';
+import { MessagesComponent } from './shared/messages/components/messages.component';
+import { MessageService } from './shared/messages/message.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    MessagesComponent,
-    DashboardComponent,
-    HeroSearchComponent
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -43,15 +33,14 @@ import { HeroService } from './feature/hero.service';
     ),
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
-    StoreModule.forFeature(fromStore.storeFeatureKey, fromStore.reducers),
-    EffectsModule.forFeature([HeroesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
+    FeatureModule,
   ],
-  providers: [HeroService, MessageService, HeroesFacade],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

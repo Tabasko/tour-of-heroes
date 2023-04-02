@@ -89,6 +89,7 @@ export const reducers = createReducer(
   )),
   on(StoreActions.saveHeroSuccess, (state, action) => {
     const heroes = state.heroes.map(
+      // qa: update new hero like this?
       hero => action.hero.id === hero.id ? action.hero : hero
     );
     return {

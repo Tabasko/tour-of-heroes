@@ -73,6 +73,8 @@ export class HeroesEffects {
     ofType(StoreActions.saveHero),
     switchMap((action) => {
       return this.heroService.updateHero(action.hero).pipe(
+        tap((hero)=> console.log("effect action" + action.hero)),
+        tap((hero)=> console.log("effect hero" + hero)),
         map((hero) => StoreActions.saveHeroSuccess({hero})),
         catchError((error) =>
           of(StoreActions.saveHeroFailure({ error: error.message }))
