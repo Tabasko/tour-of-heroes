@@ -45,8 +45,8 @@ export class HeroesFacade {
     this.store.dispatch(fromActions.deleteHero({id}));
   }
 
-  save(hero: Hero): void {
-    this.store.dispatch(fromActions.saveHero({hero}));
+  save(hero: Hero, name: string): void {
+    this.store.dispatch(fromActions.saveHero({hero: hero, name: name}));
   }
 
   resetSearchResult() {

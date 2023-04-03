@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { Hero } from '../model/hero';
 import { HeroService } from '../service/hero.service';
 import * as StoreActions from './store.actions';
 
@@ -71,7 +73,7 @@ export class HeroesEffects {
     this.actions$.pipe(
       ofType(StoreActions.saveHero),
       switchMap((action) => {
-        return this.heroService.updateHero(action.hero).pipe(
+        return this.heroService.saveHero({...action.hero, name: action.name} as Hero).pipe(
           map((hero) => StoreActions.saveHeroSuccess({ hero })),
           catchError((error) =>
             of(StoreActions.saveHeroFailure({ error: error.message }))
@@ -87,6 +89,7 @@ export class HeroesEffects {
       switchMap((action) => {
         return this.heroService.searchHeroes(action.term).pipe(
           map((heroes) => StoreActions.searchSuccess({ heroes })),
+          tap(()=> this.router.navigate(['/dashboard'])),
           catchError((error) =>
             of(StoreActions.searchFailure({ error: error.message }))
           )
@@ -95,5 +98,5 @@ export class HeroesEffects {
     )
   );
 
-  constructor(private actions$: Actions, private heroService: HeroService) { }
+  constructor(private actions$: Actions, private heroService: HeroService, private router: Router) { }
 }

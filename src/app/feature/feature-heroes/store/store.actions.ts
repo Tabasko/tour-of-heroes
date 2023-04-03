@@ -17,7 +17,7 @@ export const getHero = createAction('[Heroes] getHero', props<{ id: number }>())
 export const getHeroSuccess = createAction('[Heroes] getHero Success', props<{ hero: Hero }>());
 export const getHeroFailure = createAction('[Heroes] getHero Failure', props<{ error: string }>());
 
-export const saveHero = createAction('[Heroes] saveHero', props<{ hero: Hero }>());
+export const saveHero = createAction('[Heroes] saveHero', props<{ hero: Hero, name: string }>());
 export const saveHeroSuccess = createAction('[Heroes] saveHero Success', props<{ hero: Hero }>());
 export const saveHeroFailure = createAction('[Heroes] saveHero Failure', props<{ error: string }>());
 
