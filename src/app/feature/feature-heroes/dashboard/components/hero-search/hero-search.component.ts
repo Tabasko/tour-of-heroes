@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {
-  debounceTime, distinctUntilChanged
+    debounceTime, distinctUntilChanged
 } from 'rxjs/operators';
-import { Hero } from '../../model/hero';
-import { HeroesFacade } from '../../store/store.facade';
+import { Hero } from '../../../model/hero';
+import { HeroesFacade } from '../../../store/store.facade';
 
 @Component({
   selector: 'app-hero-search',

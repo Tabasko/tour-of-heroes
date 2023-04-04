@@ -18,7 +18,7 @@ import { MessageService } from './shared/messages/message.service';
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent
+    MessagesComponent    
   ],
   imports: [
     BrowserModule,
