@@ -1,4 +1,4 @@
-export const Data = {
+export const DummyData = {
   "controls": [
     {
       "name": "firstName",

@@ -19,7 +19,7 @@
     "scope": "javascript, typescript",
     "prefix": "ngrx-reducer",
     "body": [
-      "on($1.$2, (state, action) => (",
+      "on($0}.$2, (state, action) => (",
       "{",
       "  ...state,",
       "  loading: true",

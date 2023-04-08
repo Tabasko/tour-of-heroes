@@ -1,27 +1,15 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DynamicFormControls, DynamicFormData } from './model/dynamic-form.model';
+import { GenericFormControls } from './components/model/generic-form.model';
 
-@Component({
-  selector: 'app-dynamic-form',
-  templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class DynamicFormComponent implements OnChanges {
+export class GenericFormService {
 
-  @Input() formData: DynamicFormData = {controls: []};
+  constructor(private formBuilder: FormBuilder) { }
 
-  public myForm: FormGroup = this.fb.group({});
-
-  constructor(private fb: FormBuilder) { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (!changes.formData.firstChange) {
-      this.createForm(this.formData.controls);
-    }
-  }
-
-  createForm(controls: DynamicFormControls[]) {
+  createForm(formGroup: FormGroup, controls: GenericFormControls[]) {
     for (const control of controls) {
       const validatorsToAdd = [];
 
@@ -67,16 +55,11 @@ export class DynamicFormComponent implements OnChanges {
         }
       }
 
-      this.myForm.addControl(
+      formGroup.addControl(
         control.name,
-        this.fb.control(control.value, validatorsToAdd)
+        this.formBuilder.control(control.value, validatorsToAdd)
       );
     }
-  }
-
-  onSubmit() {
-    console.log('Form valid: ', this.myForm.valid);
-    console.log('Form values: ', this.myForm.value);
   }
 
 }

@@ -11,14 +11,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InMemoryDataService } from './in-memory-data.service';
 
-import { FeatureModule } from './feature/feature-module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeatureModule } from './feature/feature.module';
 import { MessagesComponent } from './shared/messages/components/messages.component';
 import { MessageService } from './shared/messages/message.service';
+import { GenericDetailsFormComponent } from './shared/generic-details-form/generic-details-form.component';
+import { GenericEditFormComponent } from './shared/generic-form/components/generic-edit-form/generic-edit-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent    
+    MessagesComponent,
+    GenericDetailsFormComponent,
+    GenericEditFormComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { MessageService } from './shared/messages/message.service';
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
+    BrowserAnimationsModule,
     FeatureModule,
   ],
   providers: [MessageService],

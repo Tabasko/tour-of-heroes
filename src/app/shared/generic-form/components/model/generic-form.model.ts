@@ -1,4 +1,4 @@
-export interface DynamicFormValidators {
+export interface GenericFormValidators {
   min?: number;
   max?: number;
   required?: boolean;
@@ -10,22 +10,22 @@ export interface DynamicFormValidators {
   nullValidator?: boolean;
 }
 
-export interface DynamicFormControlOptions {
+export interface GenericFormControlOptions {
   min?: string;
   max?: string;
   step?: string;
   icon?: string;
 }
 
-export interface DynamicFormControls {
+export interface GenericFormControls {
   name: string;
   label: string;
   value: string;
   type: string;
-  options?: DynamicFormControlOptions;
-  validators: DynamicFormValidators;
+  options?: GenericFormControlOptions;
+  validators: GenericFormValidators;
 }
 
-export interface DynamicFormData {
-  controls: DynamicFormControls[];
+export interface GenericFormData {
+  controls: GenericFormControls[];
 }

@@ -1,11 +1,8 @@
-
-<div>Dynamic Form Works!</div>
-<!--
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-  <div *ngFor="let control of formData?.controls">
-    <mat-label>{{ control.label }}</mat-label>
-    <mat-input
-      *ngIf="
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div *ngFor="let control of data?.controls">
+<mat-form-field>
+   <mat-label>{{ control.label }}</mat-label>
+    <input mat-input *ngIf="
         [
           'text',
           'password',
@@ -15,16 +12,12 @@
           'tel',
           'url'
         ].includes(control.type)
-      "
-      [type]="control.type"
+      " [type]="control.type" [formControlName]="control.name" [value]="control.value">
+</mat-form-field>
+<!--ion-textarea *ngIf="control.type === 'textarea'"
       [formControlName]="control.name"
       [value]="control.value"
-    ></mat-input>
-    <ion-textarea
-      *ngIf="control.type === 'textarea'"
-      [formControlName]="control.name"
-      [value]="control.value"
-    ></ion-textarea>
+    ></!--ion-textarea>
     <ion-checkbox
       *ngIf="control.type === 'checkbox'"
       [formControlName]="control.name"
@@ -49,7 +42,6 @@
       <ion-icon slot="end" [name]="control.options.icon"></ion-icon>
     </ion-range>
   </div>
-  <ion-button type="submit">Submit</ion-button>
+  <ion-button-- type="submit">Submit</ion-button-->
+  </div>
 </form>
-
--->
