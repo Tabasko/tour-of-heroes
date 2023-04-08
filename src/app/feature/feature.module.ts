@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatureHeroesModule } from './feature-heroes/feature-heroes-module';
-import { FeatureDynamicFormModule } from './feature-dynamic-form/feature-dynamic-form.module';
+import { FeatureDetailsModule } from './feature-details/feature-details.module';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     FeatureHeroesModule,
-    FeatureDynamicFormModule
+    FeatureDetailsModule
+    
   ]
 })
 export class FeatureModule { }

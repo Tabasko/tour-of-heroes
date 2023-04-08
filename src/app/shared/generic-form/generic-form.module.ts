@@ -35,6 +35,9 @@ const MatModules = [
   exports: [
     ...CustomComponents,
     ...MatModules
+  ],
+  providers: [
+    GenericFormService
   ]
 })
 export class GenericFormModule { }

@@ -14,6 +14,8 @@ export class DetailsContainerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.data);
+    
   }
 
 }

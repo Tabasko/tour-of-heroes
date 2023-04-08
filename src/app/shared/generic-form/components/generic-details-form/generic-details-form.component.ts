@@ -16,7 +16,7 @@ export class GenericDetailsFormComponent implements OnChanges {
   constructor(private fb: FormBuilder, private fs: GenericFormService) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.formData.firstChange) {
+    if (!changes.data.firstChange) {
       this.fs.createForm(this.form, this.data.controls);
     }
   }

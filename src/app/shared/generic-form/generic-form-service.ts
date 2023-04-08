@@ -11,6 +11,10 @@ export class GenericFormService {
 
   createForm(formGroup: FormGroup, controls: GenericFormControls[]) {
     for (const control of controls) {
+
+      console.log("createForm Control '" + control.name + "'.");
+
+
       const validatorsToAdd = [];
 
       for (const [key, value] of Object.entries(control.validators)) {

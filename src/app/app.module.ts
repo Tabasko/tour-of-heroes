@@ -10,20 +10,16 @@ import { environment } from 'src/environments/environment.prod';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InMemoryDataService } from './in-memory-data.service';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeatureModule } from './feature/feature.module';
 import { MessagesComponent } from './shared/messages/components/messages.component';
 import { MessageService } from './shared/messages/message.service';
-import { GenericDetailsFormComponent } from './shared/generic-details-form/generic-details-form.component';
-import { GenericEditFormComponent } from './shared/generic-form/components/generic-edit-form/generic-edit-form.component';
+import { GenericFormModule } from './shared/generic-form/generic-form.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
-    GenericDetailsFormComponent,
-    GenericEditFormComponent
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +41,7 @@ import { GenericEditFormComponent } from './shared/generic-form/components/gener
     }),
     BrowserAnimationsModule,
     FeatureModule,
+    GenericFormModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

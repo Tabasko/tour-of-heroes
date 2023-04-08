@@ -16,40 +16,6 @@ export const DummyData = {
       "value": "",
       "type": "text",
       "validators": {}
-    },
-    {
-      "name": "comments",
-      "label": "Comments",
-      "value": "",
-      "type": "textarea",
-      "validators": {}
-    },
-    {
-      "name": "agreeTerms",
-      "label": "Do you agree?",
-      "value": "false",
-      "type": "checkbox",
-      "validators": {}
-    },
-    {
-      "name": "lightDark",
-      "label": "Toggle dark mode",
-      "value": "false",
-      "type": "toggle",
-      "validators": {}
-    },
-    {
-      "name": "size",
-      "label": "Size",
-      "value": "",
-      "type": "range",
-      "options": {
-        "min": "0",
-        "max": "100",
-        "step": "1",
-        "icon": "sunny"
-      },
-      "validators": {}
     }
   ]
 }
