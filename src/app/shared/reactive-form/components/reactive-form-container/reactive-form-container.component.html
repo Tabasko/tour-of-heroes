@@ -1,0 +1,16 @@
+<p>{{form.value | json }}</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <input mat-input formControlName="userName" type="text">
+    
+    <div *ngIf="form.controls['userName'].dirty || form.controls['userName'].touched">
+        <p class="error" *ngIf="form.controls['userName'].errors">Username is mandatory.</p>
+    </div>
+
+    <input  mat-input formControlName="password" type="password">
+    <div *ngIf="form.controls['password'].dirty || form.controls['password'].touched">
+        <p class="error" *ngIf="form.controls['password'].errors">password is mandatory.</p>
+    </div>
+
+    <button [disabled]="!form.valid && (form.dirty || form.touched)" type="submit">Send</button>
+</form>

@@ -17,7 +17,7 @@ body, input[type="text"], button {
   font-family: Cambria, Georgia, serif;
 }
 button {
-  background-color: #eee;
+  background-color: #333;
   border: none;
   border-radius: 4px;
   cursor: pointer;

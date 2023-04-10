@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GenericFormService } from '../../generic-form-service';
-import { GenericFormControls, GenericFormData } from '../model/generic-form.model';
+import { GenericFormControl, GenericFormData } from '../model/generic-form.model';
 
 @Component({
   selector: 'app-generic-details-form',

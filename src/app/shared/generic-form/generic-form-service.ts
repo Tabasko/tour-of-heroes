@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GenericFormControls } from './components/model/generic-form.model';
+import { GenericFormControl } from './components/model/generic-form.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class GenericFormService {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  createForm(formGroup: FormGroup, controls: GenericFormControls[]) {
+  createForm(formGroup: FormGroup, controls: GenericFormControl[]) {
     for (const control of controls) {
 
       console.log("createForm Control '" + control.name + "'.");

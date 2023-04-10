@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export interface GenericFormValidators {
   min?: number;
   max?: number;
@@ -17,7 +19,7 @@ export interface GenericFormControlOptions {
   icon?: string;
 }
 
-export interface GenericFormControls {
+export interface GenericFormControl {
   name: string;
   label: string;
   value: string;
@@ -27,5 +29,5 @@ export interface GenericFormControls {
 }
 
 export interface GenericFormData {
-  controls: GenericFormControls[];
+  controls: GenericFormControl[];
 }

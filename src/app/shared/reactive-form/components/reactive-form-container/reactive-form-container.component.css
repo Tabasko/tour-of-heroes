@@ -1,0 +1,35 @@
+form {
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+.error {
+    color:red;
+}
+input {
+    padding: 2rem;
+    border-radius: 1rem;
+    color: white;
+    background-color: black;
+    border: none;
+    margin: 0.5rem 0 0 0;
+}
+
+.ng-valid {
+    border: gree 1px solid
+}
+
+.ng-invalid {
+    border: red 1px solid
+}
+
+button {
+    color: white;
+    margin: 0.5rem 0 0 0;
+    padding: 2rem;
+    border: none;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: rgb(108, 108, 108);
+}
