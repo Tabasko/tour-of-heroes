@@ -3,7 +3,7 @@ export const DummyData = {
     {
       "name": "firstName",
       "label": "First name",
-      "value": "",
+      "value": "Sebastian",
       "type": "text",
       "validators": {
         "required": true,
@@ -13,7 +13,7 @@ export const DummyData = {
     {
       "name": "lastName",
       "label": "Last name",
-      "value": "",
+      "value": "Rueber",
       "type": "text",
       "validators": {}
     }

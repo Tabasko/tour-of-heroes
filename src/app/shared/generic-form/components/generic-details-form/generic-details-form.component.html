@@ -1,8 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="generic-form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div *ngFor="let control of data?.controls">
-    <mat-form-field class="generic-form-full-width">
-    <mat-label>{{ control.label }}</mat-label>
-      <input mat-input *ngIf="
+    <mat-form-field>
+      <mat-label>{{ control.label }}</mat-label>
+      <input matInput *ngIf="
         [
           'text',
           'password',
@@ -11,7 +11,7 @@
           'search',
           'tel',
           'url'
-        ].includes(control.type)" type="control.type" formControlName="control.name" value="control.value">
+        ].includes(control.type)" type="{{control.type}}" formControlName="{{control.name}}" value="{{control.value}}">
     </mat-form-field>
     <!--ion-textarea *ngIf="control.type === 'textarea'"
       [formControlName]="control.name"
