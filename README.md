@@ -1,5 +1,5 @@
 
-# EC2
+# EC2 installation
 ```
 sudo yum install -y git
 
@@ -10,8 +10,7 @@ nvm install --lts
 #sudo yum install -y npm
 sudo npm install -g @angular/cli
 ```
-<<<<<<< HEAD
-=======
+
 ## Remote ssh config file:
 ```
 Host ec2-3-64-215-249.eu-central-1.compute.amazonaws.com
@@ -20,7 +19,16 @@ Host ec2-3-64-215-249.eu-central-1.compute.amazonaws.com
   IdentityFile D:\\Development\\Repositories\\aws\\vscode-ec2.pem
 
 ```
->>>>>>> 2eb24b9 (added docu)
+
+## Git ssh key
+```
+git remote set-url origin https://<token>@github.com/<username>/<repo>
+```
+
+```
+ git config --global user.email "Tabasko@github.com"
+ git config --global user.name "Tabasko"
+```
 
 # AngularTourOfHeroes
 
