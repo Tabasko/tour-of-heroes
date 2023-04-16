@@ -10,6 +10,17 @@ nvm install --lts
 #sudo yum install -y npm
 sudo npm install -g @angular/cli
 ```
+<<<<<<< HEAD
+=======
+## Remote ssh config file:
+```
+Host ec2-3-64-215-249.eu-central-1.compute.amazonaws.com
+  HostName ec2-3-64-215-249.eu-central-1.compute.amazonaws.com
+  User ec2-user
+  IdentityFile D:\\Development\\Repositories\\aws\\vscode-ec2.pem
+
+```
+>>>>>>> 2eb24b9 (added docu)
 
 # AngularTourOfHeroes
 
