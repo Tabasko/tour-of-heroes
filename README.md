@@ -1,3 +1,11 @@
+
+# EC2
+```
+sudo yum install -y git
+sudo yum install -y npm
+sudo npm install -g @angular/cli
+```
+
 # AngularTourOfHeroes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
