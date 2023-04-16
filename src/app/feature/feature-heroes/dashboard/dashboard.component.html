@@ -1,7 +1,6 @@
 <div class="heroes-menu">
-  <a *ngFor="let hero of heroes$ | async"
-      routerLink="/detail/{{hero.id}}">
-      {{hero.name}}
+  <a *ngFor="let hero of heroes$ | async" routerLink="/detail/{{ hero.id }}">
+    {{ hero.name }}
   </a>
 </div>
 

@@ -1,0 +1,9 @@
+<mat-form-field appearance="fill">
+  <mat-label>Maschine</mat-label>
+
+  <mat-select [formControl]="machineControl" [(ngModel)]="machine">
+    <mat-option *ngFor="let machine of machineList" [value]="machine">{{
+      machine
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>

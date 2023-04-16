@@ -1,0 +1,10 @@
+
+<mat-form-field appearance="fill">
+  <mat-label>Rezeptur</mat-label>
+
+  <mat-select [formControl]="recipeControl" [(ngModel)]="recipe">
+    <mat-option *ngFor="let recipe of recipeList" [value]="recipe">{{
+      recipe
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>

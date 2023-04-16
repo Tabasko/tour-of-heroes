@@ -1,0 +1,28 @@
+<mat-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="machineFormGroup">
+    <form [formGroup]="machineFormGroup">
+      <ng-template matStepLabel>Machine auswählen</ng-template>
+      <app-machine-input />
+      <div>
+        <button mat-button matStepperNext>Weiter</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="recipeFormGroup" label="Rezeptur auswählen">
+    <form [formGroup]="recipeFormGroup">
+      <app-recipe-input></app-recipe-input>
+      <div>
+        <button mat-button matStepperPrevious>Zurück</button>
+        <button mat-button matStepperNext>Weiter</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Abschließen</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Zurück</button>
+      <button mat-button>Eintrag anlegen</button>
+    </div>
+  </mat-step>
+</mat-stepper>
