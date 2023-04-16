@@ -38,6 +38,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 const MaterialComponents = [
     A11yModule,
@@ -70,6 +71,7 @@ const MaterialComponents = [
     MatProgressSpinnerModule,
     MatRadioModule,
     MatRippleModule,
+    MatSnackBarModule,
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,

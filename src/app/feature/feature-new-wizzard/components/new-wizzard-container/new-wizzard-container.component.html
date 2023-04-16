@@ -1,28 +1,66 @@
 <mat-stepper [linear]="true" #stepper>
+
+  <!--machine stepper-->
   <mat-step [stepControl]="machineFormGroup">
     <form [formGroup]="machineFormGroup">
       <ng-template matStepLabel>Machine auswählen</ng-template>
-      <app-machine-input />
+      <!--machine select form-->
+      <mat-form-field appearance="fill">
+        <mat-label>Maschine</mat-label>
+        <mat-select formControlName="machineControl" [(ngModel)]="machine">
+          <mat-option *ngFor="let machine of machineList" [value]="machine">{{
+            machine
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <div>
         <button mat-button matStepperNext>Weiter</button>
       </div>
     </form>
   </mat-step>
+
+  <!--recipe stepper-->
   <mat-step [stepControl]="recipeFormGroup" label="Rezeptur auswählen">
+    <!--recipe select form-->
     <form [formGroup]="recipeFormGroup">
-      <app-recipe-input></app-recipe-input>
+      <mat-form-field appearance="fill">
+        <mat-label>Rezepturen</mat-label>
+        <mat-select formControlName="recipeControl" [(ngModel)]="recipe">
+          <mat-option *ngFor="let recipe of recipeList" [value]="recipe">{{recipe}}</mat-option>
+        </mat-select>
+      </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Zurück</button>
         <button mat-button matStepperNext>Weiter</button>
       </div>
     </form>
   </mat-step>
+
+  <!--finalize stepper-->
   <mat-step>
     <ng-template matStepLabel>Abschließen</ng-template>
     <p>You are now done.</p>
+    <p>Maschine: {{machine}}</p>
+    <p>Rezeptur: {{recipe}}</p>
+
+    <div *ngIf="isDisconti()">
+      <p>Disconit</p>
+    </div>
+
+    <div *ngIf="isConti()">
+      <p>Conit</p>
+    </div>
+
+    <!-- disconti -->
+    <!-- enter parameters -->
+
+    <!-- conti -->
+    <!-- select template -->
+
     <div>
       <button mat-button matStepperPrevious>Zurück</button>
-      <button mat-button>Eintrag anlegen</button>
+      <button mat-stroked-button (click)="openSnackBar('Eintrag ist angelegt','Ok')">Eintrag anlegen</button>
     </div>
   </mat-step>
+
 </mat-stepper>

@@ -4,8 +4,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "src/app/shared/material-module/material-module.module";
 import { NewWizzardContainerComponent } from "./components/new-wizzard-container/new-wizzard-container.component";
-import { MachineInputComponent } from './components/machine-input/machine-input.component';
-import { RecipeInputComponent } from './components/recipe-input/recipe-input.component';
 
 const customComponents = [
   NewWizzardContainerComponent,
@@ -14,8 +12,6 @@ const customComponents = [
 @NgModule({
   declarations: [
     ...customComponents,
-    MachineInputComponent,
-    RecipeInputComponent,
   ],
   imports: [
     CommonModule,
