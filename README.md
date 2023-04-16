@@ -2,7 +2,12 @@
 # EC2
 ```
 sudo yum install -y git
-sudo yum install -y npm
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install --lts
+
+#sudo yum install -y npm
 sudo npm install -g @angular/cli
 ```
 
