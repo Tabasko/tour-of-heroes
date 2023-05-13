@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { startWith, Subscription, switchMap, timer } from "rxjs";
+import { Observable, tap, startWith, Subscription, switchMap, timer, finalize } from "rxjs";
 import { ExcelService } from "../excel.service";
 import { Hero } from "../model/hero";
 import { HeroService } from "../service/hero.service";
@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   heroes: Hero[] = [];
   timeInterval?: Subscription;
   errorMessage?: string;
+  loading = false;
 
   constructor(private heroesFacade: HeroesFacade, private heroService: HeroService, private excelService: ExcelService) {
     //this.heroes$ = heroesFacade.heroes$;
@@ -32,19 +33,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     console.log("start polling");
 
-    this.timeInterval = timer(10, 5000)
+    this.timeInterval = timer(10, 2000)
       .pipe(
         startWith(0),
-        switchMap(() => this.heroService.getHeroes())
+        switchMap(() => this.getData()),
       ).subscribe({
         next: (data) => {
-          console.log(new Date() + "  " + this.heroes);
+          setTimeout(() => {
+            this.loading = false;
+          }, 250);
           this.heroes?.push(data[0]);
         },
         error: error => console.log("Error"),
         complete: () => console.log("Complete")
       }
       );
+  }
+
+  getData(): Observable<Hero[]> {
+    this.loading = true;
+    return this.heroService.getHeroes();
   }
 
   stopPolling() {
