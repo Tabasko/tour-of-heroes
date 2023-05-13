@@ -5,7 +5,8 @@ import { FeatureDetailsModule } from './feature-details/feature-details.module';
 import { FeatureNewWizzardModule } from './feature-new-wizzard/feature-new-wizzard.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     FeatureHeroesModule,

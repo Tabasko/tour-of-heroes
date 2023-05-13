@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable, Subscription, interval, startWith, switchMap, timer } from "rxjs";
-import { Hero } from "../model/hero";
-import { HeroesFacade } from "../store/store.facade";
-import { HeroService } from "../service/hero.service";
+import { startWith, Subscription, switchMap, timer } from "rxjs";
 import { ExcelService } from "../excel.service";
+import { Hero } from "../model/hero";
+import { HeroService } from "../service/hero.service";
+import { HeroesFacade } from "../store/store.facade";
 
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.css"],
 })
-export class DashboardComponent implements OnInit, OnDestroy{
+export class DashboardComponent implements OnInit, OnDestroy {
   heroes: Hero[] = [];
   timeInterval?: Subscription;
   errorMessage?: string;
@@ -19,29 +19,41 @@ export class DashboardComponent implements OnInit, OnDestroy{
     //this.heroes$ = heroesFacade.heroes$;
   }
   ngOnDestroy(): void {
+    console.log("Unsubscribe timer");
+
     this.timeInterval?.unsubscribe();
   }
 
-  exportexcel(){
+  exportExcel() {
 
   }
 
-  ngOnInit(): void {
-    this.getHeroes();
+  startPolling() {
 
-    this.timeInterval = timer(5000, 10000)
-    .pipe(
-      startWith(0),
-      switchMap(()=> this.heroService.getHeroes())
-    ).subscribe({
-      next: (data) => {
-        console.log(this.heroes);
-        this.heroes?.push(data[0]);
+    console.log("start polling");
+
+    this.timeInterval = timer(10, 5000)
+      .pipe(
+        startWith(0),
+        switchMap(() => this.heroService.getHeroes())
+      ).subscribe({
+        next: (data) => {
+          console.log(new Date() + "  " + this.heroes);
+          this.heroes?.push(data[0]);
+        },
+        error: error => console.log("Error"),
+        complete: () => console.log("Complete")
       }
-        ,
-      error: error => this.errorMessage= error,
-      complete: () => {}}
-    );
+      );
+  }
+
+  stopPolling() {
+    console.log("Stop polling");
+
+    this.timeInterval?.unsubscribe();
+  }
+
+  ngOnInit(): void {
 
   }
 
