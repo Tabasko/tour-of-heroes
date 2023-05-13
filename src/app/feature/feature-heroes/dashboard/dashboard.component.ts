@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private heroesFacade: HeroesFacade, private heroService: HeroService, private excelService: ExcelService) {
     //this.heroes$ = heroesFacade.heroes$;
   }
+
   ngOnDestroy(): void {
     console.log("Unsubscribe timer");
 
@@ -26,6 +27,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   exportExcel() {
+    this.heroService.getHeroes().subscribe(
+      (d) => {
+        const data = d.map((items) => {
+          return {
+            "Name": items.name,
+            "ID": items.id
+          }
+        }
+        );
+        this.excelService.exportToExcel(
+          data,
+          'yourExcelFile-' + new Date().getTime());
+      }
+    );
+
 
   }
 
