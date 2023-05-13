@@ -37,7 +37,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
         );
         this.excelService.exportToExcel(
-          data,
+          [
+            { data: data, sheetName: "Tabelle 1" },
+            { data: data, sheetName: "Tabelle 2" },
+            { data: data, sheetName: "Tabelle 3" }
+          ],
           'yourExcelFile-' + new Date().getTime());
       }
     );
