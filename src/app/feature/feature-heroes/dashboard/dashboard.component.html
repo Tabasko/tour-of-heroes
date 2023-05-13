@@ -1,7 +1,15 @@
-<div class="heroes-menu">
-  <a *ngFor="let hero of heroes$ | async" routerLink="/detail/{{ hero.id }}">
+
+<div *ngIf="errorMessage">
+{{errorMessage}}
+</div>
+<div class="heroes-menu" *ngIf="heroes">
+  <a *ngFor="let hero of heroes" routerLink="/detail/{{ hero.id }}">
     {{ hero.name }}
   </a>
 </div>
+
+<a style="cursor: pointer" (click)="exportexcel()">
+Download
+</a>
 
 <app-hero-search></app-hero-search>
