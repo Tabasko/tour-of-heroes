@@ -1,6 +1,6 @@
 const colors = ['#5470C6', '#91CC75', '#EE6666'];
 
-option = {
+const option = {
   color: colors,
   tooltip: {
     trigger: 'axis',
