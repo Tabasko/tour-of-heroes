@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as XLSX from 'xlsx';
 
+export interface ExcelData {
+  sheetName: string,
+  data: any
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,20 +13,17 @@ export class ExcelService {
 
   constructor() { }
 
-  createWorkbook(filename: string){
-    {
-      /* table id is passed over here */   
-      let element = document.getElementById('excel-table'); 
-      const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  exportToExcel(excelData: ExcelData[], workbookName: string): void {
+    // generate workbook and add the worksheet
+    const workbook: XLSX.WorkBook = XLSX.utils.book_new();
 
-      /* generate workbook and add the worksheet */
-      const wb: XLSX.WorkBook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    for (let data of excelData) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data.data);
+      XLSX.utils.book_append_sheet(workbook, ws, data.sheetName);
+    }
 
-      /* save to file */
-      XLSX.writeFile(wb, filename);
-     
-   }
+    // save to file
+    XLSX.writeFile(workbook, workbookName + ".xlsx");
   }
 
 }

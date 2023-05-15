@@ -16,6 +16,7 @@ import { MessagesComponent } from './shared/messages/components/messages.compone
 import { MessageService } from './shared/messages/message.service';
 import { GenericFormModule } from './shared/generic-form/generic-form.module';
 import { ReactiveFormModule } from './shared/reactive-form/reactive-form.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ReactiveFormModule } from './shared/reactive-form/reactive-form.module'
     BrowserAnimationsModule,
     FeatureModule,
     GenericFormModule,
-    ReactiveFormModule
+    ReactiveFormModule,
+    NgbModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

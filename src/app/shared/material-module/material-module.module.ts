@@ -38,6 +38,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 const MaterialComponents = [
@@ -78,7 +79,8 @@ const MaterialComponents = [
     MatSlideToggleModule,
     MatSnackBarModule,
     PortalModule,
-    ScrollingModule
+    ScrollingModule,
+    MatTooltipModule
 ]
 
 @NgModule({
